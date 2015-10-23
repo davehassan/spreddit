@@ -2,4 +2,11 @@
 
 <p><%= @sub.description %></p>
 
+<h3>Posts for this SubSpreddit!</h3>
+<% @sub.posts.each do |post| %>
+  <ul>
+    <li><a href="<%= post_url(post) %>"><%= post.title %></a></li>
+  </ul>
+<% end %>
+
 <a href="<%= user_url(@sub.moderator) %>"><%= @sub.moderator.username %></a>

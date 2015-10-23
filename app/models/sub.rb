@@ -6,5 +6,7 @@ class Sub < ActiveRecord::Base
     class_name: 'User',
     foreign_key: :moderator_id
 
+  has_many :posts
+
 
 end
