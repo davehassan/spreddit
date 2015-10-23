@@ -10,5 +10,12 @@
 
 <%= yield %>
 
+<% if logged_in? %>
+
+    <form action="<%= session_url %>" method="POST">
+      <%= hidden_form_inputs("DELETE") %>
+      <button>Log Out, Jerkoff!</button>
+    </form>
+<% end %>
 </body>
 </html>

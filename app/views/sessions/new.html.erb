@@ -1,0 +1,20 @@
+<h1>Log In Asshole!</h1>
+<form action="<%= session_url %>" method="POST">
+  <%= hidden_form_inputs("POST") %>
+
+  <label>Username:
+    <input
+      type="text"
+      name="user[username]"
+      value="<%= @user.username %>">
+  </label><br>
+
+  <label>Password:
+    <input
+      type="password"
+      name="user[password]">
+  </label><br>
+
+
+  <button>Submit!!!!!!!!!</button>
+</form>

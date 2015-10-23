@@ -1,0 +1,22 @@
+<% action = user.persisted? ? user_url(user) : users_url %>
+<% method = user.persisted? ? "PATCH" : "POST" %>
+
+<form action="<%= action %>" method="POST">
+  <%= hidden_form_inputs(method) %>
+
+  <label>Username:
+    <input
+      type="text"
+      name="user[username]"
+      value="<%= user.username %>">
+  </label><br>
+
+  <label>Password:
+    <input
+      type="password"
+      name="user[password]">
+  </label><br>
+
+
+  <button>Submit!!!!!!!!!</button>
+</form>
