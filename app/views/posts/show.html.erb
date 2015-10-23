@@ -1,4 +1,13 @@
 <h1><%= @post.title %></h1>
 
 <p><%= @post.content %></p>
-<a href="<%= @post.url %>">Link</a>
+<a href="<%= @post.url %>">Link</a><br>
+
+<% @post.comments.each do |comment| %>
+<ul>
+  <li><%= comment.author.username %> wrote:
+    <%= comment.content %></li>
+</ul>
+<% end %>
+
+<a href="<%= new_post_comment_url(@post) %>">Write a Comment!</a>

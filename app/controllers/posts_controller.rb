@@ -8,9 +8,7 @@ class PostsController < ApplicationController
   end
 
   def create
-    # @sub = Sub.find(params[:sub_id])
     @post = current_user.posts.new(post_params)
-
     if @post.save
       redirect_to post_url(@post)
     else
@@ -25,13 +23,11 @@ class PostsController < ApplicationController
 
   def edit
     @post = Post.find(params[:id])
-    # @sub = @post.sub
     render :edit
   end
 
   def update
     @post = Post.find(params[:id])
-    # @sub = @post.sub
     if @post.update(post_params)
       redirect_to post_url(@post)
     else
