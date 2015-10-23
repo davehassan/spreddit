@@ -1,0 +1,15 @@
+<% methid = (parent.is_a?(Post) ? :comments : :child_comments ) %>
+
+<% parent.send(methid).each do |comment| %>
+  <% if parent.is_a?(Post) %>
+    <% next unless comment.parent.nil? %>
+  <% end %>
+  <ul>
+    <li><%= comment.author.username %> wrote:
+      <a href="<%= comment_url(comment) %>">
+        <%= comment.content %></a></li>
+        <% unless comment.child_comments.empty? %>
+          <%= render "comments/comment", parent: comment %>
+        <% end %></li>
+  </ul>
+<% end %>

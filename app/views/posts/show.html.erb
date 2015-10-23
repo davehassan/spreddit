@@ -3,13 +3,7 @@
 <p><%= @post.content %></p>
 <a href="<%= @post.url %>">Link</a><br>
 
-<% @post.comments.each do |comment| %>
-<% next unless comment.parent.nil? %>
-<ul>
-  <li><%= comment.author.username %> wrote:
-    <a href="<%= comment_url(comment) %>">
-      <%= comment.content %></a></li>
-</ul>
-<% end %>
+<%= render "comments/comment", parent: @post %>
+
 
 <a href="<%= new_post_comment_url(@post) %>">Write a Comment!</a>
