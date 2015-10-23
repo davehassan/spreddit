@@ -3,15 +3,13 @@ class PostsController < ApplicationController
   before_action :author_check, only: [:edit, :update, :destroy]
 
   def new
-    @sub = Sub.find(params[:sub_id])
-    @post = @sub.posts.new(author_id: current_user.id)
+    @post = current_user.posts.new
     render :new
   end
 
   def create
-    @sub = Sub.find(params[:sub_id])
-    @post = @sub.posts.new(post_params)
-    @post.author_id = current_user.id
+    # @sub = Sub.find(params[:sub_id])
+    @post = current_user.posts.new(post_params)
 
     if @post.save
       redirect_to post_url(@post)
@@ -27,13 +25,13 @@ class PostsController < ApplicationController
 
   def edit
     @post = Post.find(params[:id])
-    @sub = @post.sub
+    # @sub = @post.sub
     render :edit
   end
 
   def update
     @post = Post.find(params[:id])
-    @sub = @post.sub
+    # @sub = @post.sub
     if @post.update(post_params)
       redirect_to post_url(@post)
     else
@@ -44,7 +42,7 @@ class PostsController < ApplicationController
 
   private
     def post_params
-      params.require(:post).permit(:title, :content, :url)
+      params.require(:post).permit(:title, :content, :url, sub_ids: [])
     end
 
     def author_check
