@@ -1,0 +1,28 @@
+<h1>Reply to <%= @comment.author.username %></h1>
+
+<p><%= @comment.content %></p>
+
+<h3>Replies</h3>
+
+<% @comment.child_comments.each do |comment| %>
+<ul>
+  <li><%= comment.author.username %> wrote:
+    <a href="<%= comment_url(comment) %>">
+      <%= comment.content %></a></li>
+</ul>
+<% end %>
+
+<form action="<%= comments_url %>" method="POST">
+  <%= hidden_form_inputs('POST') %>
+
+  <label>Reply to this comment:<br>
+    <textarea name="comment[content]"></textarea>
+  </label><br>
+
+  <input type="hidden" name="comment[post_id]" value="<%= @comment.post_id %>">
+  <input type="hidden" name="comment[parent_id]" value="<%= @comment.id %>">
+
+  <button>Submit</button>
+
+
+</form>
